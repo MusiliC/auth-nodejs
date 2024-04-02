@@ -77,6 +77,17 @@ const login = async (req, res, next) => {
   }
 };
 
+const getUsers = async (req, res, next) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({
+      users,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const sayHello = async (req, res) => {
   res.json("Hello world");
 };
@@ -85,4 +96,5 @@ module.exports = {
   register,
   login,
   sayHello,
+  getUsers,
 };
